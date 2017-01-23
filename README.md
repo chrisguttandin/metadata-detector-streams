@@ -1,5 +1,7 @@
 # metadata-detector-streams
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/chrisguttandin/metadata-detector-streams.svg)](https://greenkeeper.io/)
+
 **A simple tool to locate and strip metadata from files.**
 
 [![tests](https://img.shields.io/travis/chrisguttandin/metadata-detector-streams/master.svg?style=flat-square)](https://travis-ci.org/chrisguttandin/metadata-detector-streams)
