@@ -1,0 +1,50 @@
+{
+  "author": "Christoph Guttandin",
+  "bugs": {
+    "url": "https://github.com/chrisguttandin/metadata-detector-streams/issues"
+  },
+  "dependencies": {
+    "synchsafe": "0.0.0"
+  },
+  "description": "A simple tool to locate and strip metadata from files.",
+  "devDependencies": {
+    "@types/node": "^7.0.2",
+    "babel-preset-env": "^1.1.8",
+    "chai": "^3.5.0",
+    "eslint-config-holy-grail": "^14.0.0",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^6.0.0",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-mocha-test": "^0.13.0",
+    "grunt-sh": "^0.1.4",
+    "grunt-tslint": "^4.0.0",
+    "gruntify-eslint": "^3.0.0",
+    "husky": "^0.13.1",
+    "leche": "^2.1.1",
+    "load-grunt-config": "^0.19.1",
+    "mocha": "^3.0.0",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0",
+    "tslint-config-holy-grail": "^5.0.1",
+    "typescript": "^2.1.5"
+  },
+  "engines": {
+    "node": ">=7.4.0"
+  },
+  "homepage": "https://github.com/chrisguttandin/metadata-detector-streams",
+  "license": "MIT",
+  "main": "build/node/module.js",
+  "name": "metadata-detector-streams",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisguttandin/metadata-detector-streams.git"
+  },
+  "scripts": {
+    "precommit": "grunt lint",
+    "prepublish": "grunt build",
+    "test": "grunt lint && grunt test"
+  },
+  "types": "build/es2015/module.d.ts",
+  "version": "0.0.0"
+}

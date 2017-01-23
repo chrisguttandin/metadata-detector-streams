@@ -1,0 +1,14 @@
+# metadata-detector-streams
+
+**A simple tool to locate and strip metadata from files.**
+
+[![tests](https://img.shields.io/travis/chrisguttandin/metadata-detector-streams/master.svg?style=flat-square)](https://travis-ci.org/chrisguttandin/metadata-detector-streams)
+[![dependencies](https://img.shields.io/david/chrisguttandin/metadata-detector-streams.svg?style=flat-square)](https://www.npmjs.com/package/metadata-detector-streams)
+[![version](https://img.shields.io/npm/v/metadata-detector-streams.svg?style=flat-square)](https://www.npmjs.com/package/metadata-detector-streams)
+
+This module is currently capable of handling [ID3](http://id3.org/Home) tags within MP3s and
+metadata of FLAC files as described in the official
+[FLAC format specification](http://xiph.org/flac/format.html). It can also parse
+[Vorbis Comments](https://xiph.org/vorbis/doc/v-comment.html) within
+[OGG Containers](https://xiph.org/ogg). In addition to that it can also parse MPEG-4 files which are
+nicely explained on the homepage of [AtomicParsley](http://atomicparsley.sourceforge.net).
