@@ -32,6 +32,11 @@
   "engines": {
     "node": ">=7.4.0"
   },
+  "files": [
+    "build/node/",
+    "build/es2015/",
+    "src/"
+  ],
   "homepage": "https://github.com/chrisguttandin/metadata-detector-streams",
   "license": "MIT",
   "main": "build/node/module.js",
