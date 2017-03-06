@@ -27,7 +27,7 @@
     "mocha": "^3.0.0",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0",
-    "tslint-config-holy-grail": "^6.0.0",
+    "tslint-config-holy-grail": "^7.0.0",
     "typescript": "^2.1.5"
   },
   "engines": {
