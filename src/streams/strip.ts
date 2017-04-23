@@ -162,7 +162,7 @@ export class StripStream extends Transform {
         callback(null);
     }
 
-    protected _transform (chunk, encoding, callback) {
+    public _transform (chunk, encoding, callback) {
         this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
         if (this._analyzeBuffer()) {

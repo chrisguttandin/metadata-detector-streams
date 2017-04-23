@@ -154,7 +154,7 @@ export class LocateStream extends Writable {
         super.end(chunk, encoding, callback);
     }
 
-    protected _write (chunk, encoding, callback) {
+    public _write (chunk, encoding, callback) {
         this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
         if (this._analyzeBuffer()) {
