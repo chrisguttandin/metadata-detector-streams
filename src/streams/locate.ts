@@ -16,7 +16,7 @@ export class LocateStream extends Writable {
 
     private _offset: number;
 
-    constructor (options = undefined) {
+    constructor (options?) {
         super(options);
 
         this._buffer = new Buffer(0);
