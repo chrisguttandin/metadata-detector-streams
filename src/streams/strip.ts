@@ -1,6 +1,6 @@
 import { Buffer } from 'buffer';
-import { Transform } from 'stream';
-import synchsafe from 'synchsafe';
+import { Transform, TransformOptions} from 'stream';
+import { decode } from 'synchsafe';
 
 export class StripStream extends Transform {
 
@@ -16,7 +16,7 @@ export class StripStream extends Transform {
 
     private _offset: number;
 
-    constructor (options?) {
+    constructor (options?: TransformOptions) {
         super(options);
 
         this._buffer = new Buffer(0);
@@ -88,7 +88,7 @@ export class StripStream extends Transform {
         }
 
         if (this._isFirstAnalysis && this._buffer.toString('utf8', 0, 3) === 'ID3') {
-            const nextByte = synchsafe.decode(this._buffer.readUInt32BE(6)) + 10;
+            const nextByte = decode(this._buffer.readUInt32BE(6)) + 10;
 
             if (this._buffer.length >= nextByte) {
                 this._buffer = this._buffer.slice(nextByte);
@@ -152,7 +152,7 @@ export class StripStream extends Transform {
         return true;
     }
 
-    protected _flush (callback) {
+    protected _flush (callback: Function): void {
         this._isLastAnalysis = true;
 
         this._analyzeBuffer();
@@ -162,7 +162,7 @@ export class StripStream extends Transform {
         callback(null);
     }
 
-    public _transform (chunk, encoding, callback) {
+    public _transform (chunk: any, _: string, callback: Function): void {
         this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
         if (this._analyzeBuffer()) {

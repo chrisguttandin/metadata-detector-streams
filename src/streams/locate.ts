@@ -1,6 +1,6 @@
 import { Buffer } from 'buffer';
-import { Writable } from 'stream';
-import synchsafe from 'synchsafe';
+import { Writable, WritableOptions } from 'stream';
+import { decode } from 'synchsafe';
 
 export class LocateStream extends Writable {
 
@@ -16,7 +16,7 @@ export class LocateStream extends Writable {
 
     private _offset: number;
 
-    constructor (options?) {
+    constructor (options?: WritableOptions) {
         super(options);
 
         this._buffer = new Buffer(0);
@@ -84,7 +84,7 @@ export class LocateStream extends Writable {
         if (this._isFirstAnalysis && this._buffer.toString('utf8', 0, 3) === 'ID3') {
             this.emit('location', [
                 0,
-                synchsafe.decode(this._buffer.readUInt32BE(6)) + 10
+                decode(this._buffer.readUInt32BE(6)) + 10
             ]);
         }
 
@@ -144,17 +144,21 @@ export class LocateStream extends Writable {
         return true;
     }
 
-    public end (chunk?, encoding?, callback?) {
+    public end (chunk?: any, encoding?: string | Function, callback?: Function): void {
         this._isLastAnalysis = true;
 
         if (chunk === undefined) {
             this._analyzeBuffer();
         }
 
-        super.end(chunk, encoding, callback);
+        if (typeof encoding === 'string') {
+            super.end(chunk, encoding, callback);
+        } else {
+            super.end(chunk, callback);
+        }
     }
 
-    public _write (chunk, encoding, callback) {
+    public _write (chunk: any, _: string, callback: Function): void {
         this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
         if (this._analyzeBuffer()) {
