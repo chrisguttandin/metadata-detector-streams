@@ -27,6 +27,31 @@ export class LocateStream extends Writable {
         this._offset = 0;
     }
 
+    public end (chunk?: any, encoding?: string | Function, callback?: Function): void {
+        this._isLastAnalysis = true;
+
+        if (chunk === undefined) {
+            this._analyzeBuffer();
+        }
+
+        if (typeof encoding === 'string') {
+            super.end(chunk, encoding, callback);
+        } else {
+            super.end(chunk, callback);
+        }
+    }
+
+    public _write (chunk: any, _: string, callback: Function): void {
+        this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
+
+        if (this._analyzeBuffer()) {
+            this._offset += this._buffer.length - 128;
+            this._buffer = this._buffer.slice(-128);
+        }
+
+        callback();
+    }
+
     private _analyzeBuffer () {
         if (this._isFirstAnalysis && this._buffer.length < 8) {
             return false;
@@ -142,31 +167,6 @@ export class LocateStream extends Writable {
         this._isFirstAnalysis = false;
 
         return true;
-    }
-
-    public end (chunk?: any, encoding?: string | Function, callback?: Function): void {
-        this._isLastAnalysis = true;
-
-        if (chunk === undefined) {
-            this._analyzeBuffer();
-        }
-
-        if (typeof encoding === 'string') {
-            super.end(chunk, encoding, callback);
-        } else {
-            super.end(chunk, callback);
-        }
-    }
-
-    public _write (chunk: any, _: string, callback: Function): void {
-        this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
-
-        if (this._analyzeBuffer()) {
-            this._offset += this._buffer.length - 128;
-            this._buffer = this._buffer.slice(-128);
-        }
-
-        callback();
     }
 
 }

@@ -27,6 +27,30 @@ export class StripStream extends Transform {
         this._offset = 0;
     }
 
+    public _transform (chunk: any, _: string, callback: Function): void {
+        this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
+
+        if (this._analyzeBuffer()) {
+            const offset = Math.min(this._buffer.length, 128);
+
+            this.push(this._buffer.slice(0, -offset));
+            this._offset += this._buffer.length - offset;
+            this._buffer = this._buffer.slice(-offset);
+        }
+
+        callback();
+    }
+
+    protected _flush (callback: Function): void {
+        this._isLastAnalysis = true;
+
+        this._analyzeBuffer();
+
+        this.push(this._buffer);
+
+        callback(null);
+    }
+
     private _analyzeBuffer () {
         if (this._isFirstAnalysis && this._buffer.length < 8) {
             return false;
@@ -150,30 +174,6 @@ export class StripStream extends Transform {
         this._isFirstAnalysis = false;
 
         return true;
-    }
-
-    protected _flush (callback: Function): void {
-        this._isLastAnalysis = true;
-
-        this._analyzeBuffer();
-
-        this.push(this._buffer);
-
-        callback(null);
-    }
-
-    public _transform (chunk: any, _: string, callback: Function): void {
-        this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
-
-        if (this._analyzeBuffer()) {
-            const offset = Math.min(this._buffer.length, 128);
-
-            this.push(this._buffer.slice(0, -offset));
-            this._offset += this._buffer.length - offset;
-            this._buffer = this._buffer.slice(-offset);
-        }
-
-        callback();
     }
 
 }
