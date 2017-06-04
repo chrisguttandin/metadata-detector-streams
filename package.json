@@ -28,7 +28,7 @@
     "mocha": "^3.0.0",
     "sinon": "^2.0.0",
     "sinon-chai": "^2.8.0",
-    "tsconfig-holy-grail": "^2.2.0",
+    "tsconfig-holy-grail": "^2.2.4",
     "tslint-config-holy-grail": "^9.0.1",
     "typescript": "^2.3.4"
   },
