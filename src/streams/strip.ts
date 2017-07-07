@@ -1,5 +1,5 @@
 import { Buffer } from 'buffer';
-import { Transform, TransformOptions} from 'stream';
+import { Transform, TransformOptions } from 'stream';
 import { decode } from 'synchsafe';
 
 export class StripStream extends Transform {
