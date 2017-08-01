@@ -33,7 +33,7 @@
     "typescript": "^2.4.2"
   },
   "engines": {
-    "node": ">=6.10.3"
+    "node": ">=6.11.2"
   },
   "files": [
     "build/node/",
