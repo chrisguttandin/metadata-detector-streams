@@ -9,15 +9,14 @@ describe('metadata-detector-streams', function () {
     describe('createLocateStream()', function () {
 
         leche.withData(locationsData, function (filename, locations) {
-
-            if (filename.slice(-4) === '.txt') {
-                filename = filename.slice(0, -4);
-            }
+            const sanitizedFilename = (filename.slice(-4) === '.txt') ?
+                filename.slice(0, -4) :
+                filename;
 
             it('should locate the metadata tags of the file', function (done) {
                 const lctns = [];
                 const locateStream = metadataDetectorStreams.createLocateStream();
-                const readable = createReadStream('test/fixtures/' + filename, {
+                const readable = createReadStream('test/fixtures/' + sanitizedFilename, {
                     highWaterMark: 128
                 });
 
@@ -43,15 +42,14 @@ describe('metadata-detector-streams', function () {
     describe('createStripStream()', function () {
 
         leche.withData(lengthsData, function (filename, byteLength) {
-
-            if (filename.slice(-4) === '.txt') {
-                filename = filename.slice(0, -4);
-            }
+            const sanitizedFilename = (filename.slice(-4) === '.txt') ?
+                filename.slice(0, -4) :
+                filename;
 
             it('should strip the metadata tags from the file', function (done) {
                 let btLngth = 0;
 
-                const readable = createReadStream('test/fixtures/' + filename, {
+                const readable = createReadStream('test/fixtures/' + sanitizedFilename, {
                     highWaterMark: 128
                 });
                 const stripStream = metadataDetectorStreams.createStripStream();
