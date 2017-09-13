@@ -1,6 +1,6 @@
 import { Buffer } from 'buffer';
 import { Transform, TransformOptions } from 'stream';
-import { decode } from 'synchsafe';
+import { decode } from 'synchsafe';
 
 export class StripStream extends Transform {
 
@@ -76,7 +76,7 @@ export class StripStream extends Transform {
 
             if (this._buffer.length >= offset + length) {
                 this._buffer = this._buffer.slice(offset + length);
-            } else {
+            } else {
                 return false;
             }
         }
@@ -116,7 +116,7 @@ export class StripStream extends Transform {
 
             if (this._buffer.length >= nextByte) {
                 this._buffer = this._buffer.slice(nextByte);
-            } else {
+            } else {
                 return false;
             }
         }
