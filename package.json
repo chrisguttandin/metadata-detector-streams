@@ -29,7 +29,7 @@
     "load-grunt-config": "^0.19.1",
     "mocha": "^3.5.3",
     "sinon": "^4.0.0",
-    "sinon-chai": "^2.13.0",
+    "sinon-chai": "^2.14.0",
     "tsconfig-holy-grail": "^2.4.5",
     "tslint": "^5.7.0",
     "tslint-config-holy-grail": "^13.0.5",
