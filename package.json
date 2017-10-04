@@ -20,7 +20,7 @@
     "grunt-babel": "^7.0.0",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.0.0",
-    "grunt-mocha-test": "^0.13.0",
+    "grunt-mocha-test": "^0.13.3",
     "grunt-sh": "^0.2.0",
     "grunt-tslint": "^5.0.0",
     "gruntify-eslint": "^4.0.0",
