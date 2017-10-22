@@ -3,6 +3,6 @@ module.exports = {
         cmd: 'tsc -p src/tsconfig.json'
     },
     lint: {
-        cmd: 'tslint -c config/tslint/src.json --project src/tsconfig.json --type-check src/**/*.ts'
+        cmd: 'tslint -c config/tslint/src.json --project src/tsconfig.json src/**/*.ts'
     }
 };
