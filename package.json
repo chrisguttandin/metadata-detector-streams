@@ -4,7 +4,7 @@
     "url": "https://github.com/chrisguttandin/metadata-detector-streams/issues"
   },
   "dependencies": {
-    "synchsafe": "^1.0.7",
+    "synchsafe": "^1.0.8",
     "tslib": "^1.8.0"
   },
   "description": "A simple tool to locate and strip metadata from files.",
