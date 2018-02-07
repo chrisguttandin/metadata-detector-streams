@@ -30,7 +30,7 @@
     "mocha": "^5.0.0",
     "sinon": "^4.2.2",
     "sinon-chai": "^2.14.0",
-    "tsconfig-holy-grail": "^3.0.18",
+    "tsconfig-holy-grail": "^3.0.19",
     "tslint": "^5.9.1",
     "tslint-config-holy-grail": "^22.0.2",
     "typescript": "^2.7.1"
