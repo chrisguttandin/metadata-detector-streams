@@ -3,6 +3,11 @@
   "bugs": {
     "url": "https://github.com/chrisguttandin/metadata-detector-streams/issues"
   },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "dependencies": {
     "synchsafe": "^1.0.9",
     "tslib": "^1.9.0"
@@ -42,8 +47,8 @@
     "node": ">=6.11.2"
   },
   "files": [
-    "build/node/",
     "build/es2015/",
+    "build/node/",
     "src/"
   ],
   "homepage": "https://github.com/chrisguttandin/metadata-detector-streams",
