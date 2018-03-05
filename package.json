@@ -61,6 +61,7 @@
     "url": "https://github.com/chrisguttandin/metadata-detector-streams.git"
   },
   "scripts": {
+    "commitmsg": "commitlint --edit --extends @commitlint/config-angular",
     "precommit": "grunt lint",
     "prepublishOnly": "grunt build",
     "test": "grunt lint && grunt test"
