@@ -45,7 +45,7 @@
     "typescript": "^2.8.1"
   },
   "engines": {
-    "node": ">=6.11.2"
+    "node": ">=8.11.1"
   },
   "files": [
     "build/es2015/",
