@@ -19,7 +19,7 @@ export class StripStream extends Transform {
     constructor (options?: TransformOptions) {
         super(options);
 
-        this._buffer = new Buffer(0);
+        this._buffer = Buffer.alloc(0);
         this._isFirstAnalysis = true;
         this._isLastAnalysis = false;
         this._nextMpeg4AtomStart = 0;
