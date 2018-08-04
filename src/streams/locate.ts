@@ -1,6 +1,7 @@
 import { Buffer } from 'buffer';
 import { Writable, WritableOptions } from 'stream';
 import { decode } from 'synchsafe';
+import { TWritableCallback } from '../types';
 
 export class LocateStream extends Writable {
 
@@ -27,7 +28,7 @@ export class LocateStream extends Writable {
         this._offset = 0;
     }
 
-    public end (chunk?: any, encoding?: string | Function, callback?: Function): void {
+    public end (chunk?: any, encoding?: string | TWritableCallback, callback?: TWritableCallback): void {
         this._isLastAnalysis = true;
 
         if (chunk === undefined) {
@@ -41,7 +42,7 @@ export class LocateStream extends Writable {
         }
     }
 
-    public _write (chunk: any, _: string, callback: Function): void {
+    public _write (chunk: any, _: string, callback: TWritableCallback): void {
         this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
         if (this._analyzeBuffer()) {

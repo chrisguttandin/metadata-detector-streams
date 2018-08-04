@@ -1,6 +1,7 @@
 import { Buffer } from 'buffer';
 import { Transform, TransformOptions } from 'stream';
 import { decode } from 'synchsafe';
+import { TTransformCallback } from '../types';
 
 export class StripStream extends Transform {
 
@@ -27,7 +28,17 @@ export class StripStream extends Transform {
         this._offset = 0;
     }
 
-    public _transform (chunk: any, _: string, callback: Function): void {
+    public _flush (callback: TTransformCallback): void {
+        this._isLastAnalysis = true;
+
+        this._analyzeBuffer();
+
+        this.push(this._buffer);
+
+        callback();
+    }
+
+    public _transform (chunk: any, _: string, callback: TTransformCallback): void {
         this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
         if (this._analyzeBuffer()) {
@@ -39,16 +50,6 @@ export class StripStream extends Transform {
         }
 
         callback();
-    }
-
-    protected _flush (callback: Function): void {
-        this._isLastAnalysis = true;
-
-        this._analyzeBuffer();
-
-        this.push(this._buffer);
-
-        callback(null);
     }
 
     private _analyzeBuffer () {
