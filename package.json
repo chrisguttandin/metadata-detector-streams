@@ -14,9 +14,9 @@
   },
   "description": "A simple tool to locate and strip metadata from files.",
   "devDependencies": {
+    "@babel/core": "^7.0.0",
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-angular": "^7.0.1",
-    "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
