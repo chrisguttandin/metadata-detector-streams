@@ -53,7 +53,7 @@ export class LocateStream extends Writable {
         }
     }
 
-    private _analyzeBuffer () {
+    private _analyzeBuffer (): boolean {
         if (this._isFirstAnalysis && this._buffer.length < 8) {
             return false;
         }

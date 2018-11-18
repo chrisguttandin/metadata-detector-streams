@@ -52,7 +52,7 @@ export class StripStream extends Transform {
         callback();
     }
 
-    private _analyzeBuffer () {
+    private _analyzeBuffer (): boolean {
         if (this._isFirstAnalysis && this._buffer.length < 8) {
             return false;
         }
