@@ -7,9 +7,9 @@ export class StripStream extends Transform {
 
     private _buffer: Buffer;
 
-    private _isFirstAnalysis: Boolean;
+    private _isFirstAnalysis: boolean;
 
-    private _isLastAnalysis: Boolean;
+    private _isLastAnalysis: boolean;
 
     private _nextMpeg4AtomStart: number;
 
