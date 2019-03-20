@@ -86,7 +86,7 @@ export class StripStream extends Transform {
                 (this._nextMpeg4AtomStart > 0)) {
             let offset = this._nextMpeg4AtomStart - this._offset;
 
-            while (this._buffer.length > offset + 8) {
+            while (offset < this._buffer.length - 8) {
                 const length = this._buffer.readUInt32BE(offset);
                 const atom = this._buffer.toString('utf8', offset + 4, offset + 8);
 
@@ -105,10 +105,8 @@ export class StripStream extends Transform {
                 }
             }
 
-            if (this._buffer.length - 8 > offset) {
+            if (offset < this._buffer.length) {
                 return false;
-            } else {
-                return true;
             }
         }
 
