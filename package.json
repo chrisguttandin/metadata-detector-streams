@@ -34,7 +34,7 @@
     "husky": "^3.0.2",
     "leche": "^2.3.0",
     "load-grunt-config": "^2.0.1",
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.0",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.3.0",
     "tsconfig-holy-grail": "^10.0.9",
