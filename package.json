@@ -31,7 +31,7 @@
     "grunt-sh": "^0.2.0",
     "husky": "^3.0.5",
     "leche": "^2.3.0",
-    "load-grunt-config": "^3.0.0",
+    "load-grunt-config": "^3.0.1",
     "mocha": "^6.2.0",
     "sinon": "^7.4.2",
     "sinon-chai": "^3.3.0",
