@@ -28,6 +28,14 @@ export class LocateStream extends Writable {
         this._offset = 0;
     }
 
+    public _final (callback: TWritableCallback): void {
+        this._isLastAnalysis = true;
+
+        this._analyzeBuffer();
+
+        callback();
+    }
+
     public _write (chunk: any, _: string, callback: TWritableCallback): void {
         this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
@@ -37,20 +45,6 @@ export class LocateStream extends Writable {
         }
 
         callback();
-    }
-
-    public end (chunk?: any, encoding?: string | TWritableCallback, callback?: TWritableCallback): void {
-        this._isLastAnalysis = true;
-
-        if (chunk === undefined) {
-            this._analyzeBuffer();
-        }
-
-        if (typeof encoding === 'string') {
-            super.end(chunk, encoding, callback);
-        } else {
-            super.end(chunk, callback);
-        }
     }
 
     private _analyzeBuffer (): boolean {
