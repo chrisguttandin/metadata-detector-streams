@@ -4,7 +4,6 @@ import { decode } from 'synchsafe';
 import { TWritableCallback } from '../types';
 
 export class LocateStream extends Writable {
-
     private _buffer: Buffer;
 
     private _isFirstAnalysis: boolean;
@@ -17,7 +16,7 @@ export class LocateStream extends Writable {
 
     private _offset: number;
 
-    constructor (options?: WritableOptions) {
+    constructor(options?: WritableOptions) {
         super(options);
 
         this._buffer = Buffer.alloc(0);
@@ -28,7 +27,7 @@ export class LocateStream extends Writable {
         this._offset = 0;
     }
 
-    public _final (callback: TWritableCallback): void {
+    public _final(callback: TWritableCallback): void {
         this._isLastAnalysis = true;
 
         this._analyzeBuffer();
@@ -36,7 +35,7 @@ export class LocateStream extends Writable {
         callback();
     }
 
-    public _write (chunk: any, _: string, callback: TWritableCallback): void {
+    public _write(chunk: any, _: string, callback: TWritableCallback): void {
         this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
         if (this._analyzeBuffer()) {
@@ -47,7 +46,7 @@ export class LocateStream extends Writable {
         callback();
     }
 
-    private _analyzeBuffer (): boolean {
+    private _analyzeBuffer(): boolean {
         if (this._isFirstAnalysis && this._buffer.length < 8) {
             return false;
         }
@@ -64,20 +63,18 @@ export class LocateStream extends Writable {
                     return false;
                 }
 
-                isLast = ((this._buffer.readUInt8(offset) & 0x80) !== 0); // tslint:disable-line:no-bitwise
-                length = ((this._buffer.readUInt8(offset + 3) | // tslint:disable-line:no-bitwise
+                isLast = (this._buffer.readUInt8(offset) & 0x80) !== 0; // tslint:disable-line:no-bitwise
+                length =
+                    (this._buffer.readUInt8(offset + 3) | // tslint:disable-line:no-bitwise
                     (this._buffer.readUInt8(offset + 2) << 8) | // tslint:disable-line:no-bitwise
-                    (this._buffer.readUInt8(offset + 1) << 16)) + 4); // tslint:disable-line:no-bitwise
+                        (this._buffer.readUInt8(offset + 1) << 16)) + // tslint:disable-line:no-bitwise
+                    4;
             }
 
-            this.emit('location', [
-                0,
-                offset + length
-            ]);
+            this.emit('location', [0, offset + length]);
         }
 
-        if ((this._isFirstAnalysis && this._buffer.toString('utf8', 4, 8) === 'ftyp') ||
-                (this._nextMpeg4AtomStart > 0)) {
+        if ((this._isFirstAnalysis && this._buffer.toString('utf8', 4, 8) === 'ftyp') || this._nextMpeg4AtomStart > 0) {
             let offset = this._nextMpeg4AtomStart - this._offset;
 
             while (offset < this._buffer.length - 8) {
@@ -85,10 +82,7 @@ export class LocateStream extends Writable {
                 const atom = this._buffer.toString('utf8', offset + 4, offset + 8);
 
                 if (atom === 'moov' || atom === 'wide') {
-                    this.emit('location', [
-                        this._nextMpeg4AtomStart,
-                        this._nextMpeg4AtomStart + length
-                    ]);
+                    this.emit('location', [this._nextMpeg4AtomStart, this._nextMpeg4AtomStart + length]);
                 }
 
                 this._nextMpeg4AtomStart += length;
@@ -101,10 +95,7 @@ export class LocateStream extends Writable {
         }
 
         if (this._isFirstAnalysis && this._buffer.toString('utf8', 0, 3) === 'ID3') {
-            this.emit('location', [
-                0,
-                decode(this._buffer.readUInt32BE(6)) + 10
-            ]);
+            this.emit('location', [0, decode(this._buffer.readUInt32BE(6)) + 10]);
         }
 
         if (this._offset + this._buffer.length > this._nextOggPageStart + 4) {
@@ -137,10 +128,7 @@ export class LocateStream extends Writable {
                         const identifier = this._buffer.toString('utf8', index, index + 6);
 
                         if (identifier === 'vorbis') {
-                            this.emit('location', [
-                                offset,
-                                offset + pageSize
-                            ]);
+                            this.emit('location', [offset, offset + pageSize]);
                         }
                     }
 
@@ -152,15 +140,11 @@ export class LocateStream extends Writable {
         }
 
         if (this._isLastAnalysis && this._buffer.toString('utf8', this._buffer.length - 128, this._buffer.length - 125) === 'TAG') {
-            this.emit('location', [
-                this._offset + this._buffer.length - 128,
-                this._offset + this._buffer.length
-            ]);
+            this.emit('location', [this._offset + this._buffer.length - 128, this._offset + this._buffer.length]);
         }
 
         this._isFirstAnalysis = false;
 
         return true;
     }
-
 }

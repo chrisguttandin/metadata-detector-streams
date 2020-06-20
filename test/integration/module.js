@@ -5,13 +5,9 @@ const locationsData = require('../fixtures/locations-data.json');
 const metadataDetectorStreams = require('../../src/module');
 
 describe('metadata-detector-streams', function () {
-
     describe('createLocateStream()', function () {
-
         leche.withData(locationsData, function (filename, locations) {
-            const sanitizedFilename = (filename.slice(-4) === '.txt') ?
-                filename.slice(0, -4) :
-                filename;
+            const sanitizedFilename = filename.slice(-4) === '.txt' ? filename.slice(0, -4) : filename;
 
             it('should locate the metadata tags of the file', function (done) {
                 const lctns = [];
@@ -34,17 +30,12 @@ describe('metadata-detector-streams', function () {
                         lctns.push(location);
                     });
             });
-
         });
-
     });
 
     describe('createStripStream()', function () {
-
         leche.withData(lengthsData, function (filename, byteLength) {
-            const sanitizedFilename = (filename.slice(-4) === '.txt') ?
-                filename.slice(0, -4) :
-                filename;
+            const sanitizedFilename = filename.slice(-4) === '.txt' ? filename.slice(0, -4) : filename;
 
             it('should strip the metadata tags from the file', function (done) {
                 let btLngth = 0;
@@ -68,25 +59,18 @@ describe('metadata-detector-streams', function () {
                         done();
                     });
             });
-
         });
-
     });
 
     describe('locate()', function () {
-
         it('should be undefined', function () {
             expect(metadataDetectorStreams.locate).to.be.undefined;
         });
-
     });
 
     describe('strip()', function () {
-
         it('should be undefined', function () {
             expect(metadataDetectorStreams.strip).to.be.undefined;
         });
-
     });
-
 });

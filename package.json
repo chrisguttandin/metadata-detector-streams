@@ -1,73 +1,73 @@
 {
-  "author": "Christoph Guttandin",
-  "bugs": {
-    "url": "https://github.com/chrisguttandin/metadata-detector-streams/issues"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
-  "dependencies": {
-    "synchsafe": "^5.0.9",
-    "tslib": "^2.0.0"
-  },
-  "description": "A simple tool to locate and strip metadata from files.",
-  "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
-    "@babel/register": "^7.10.1",
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-angular": "^8.3.4",
-    "chai": "^4.2.0",
-    "commitizen": "^4.1.2",
-    "cz-conventional-changelog": "^3.2.0",
-    "eslint": "^7.2.0",
-    "eslint-config-holy-grail": "^47.0.4",
-    "grunt": "^1.1.0",
-    "grunt-babel": "^8.0.0",
-    "grunt-cli": "^1.3.2",
-    "grunt-contrib-clean": "^2.0.0",
-    "grunt-sh": "^0.2.0",
-    "husky": "^4.2.5",
-    "leche": "^2.3.0",
-    "load-grunt-config": "^3.0.1",
-    "mocha": "^8.0.1",
-    "prettier": "^2.0.5",
-    "pretty-quick": "^2.0.1",
-    "sinon": "^9.0.2",
-    "sinon-chai": "^3.5.0",
-    "tsconfig-holy-grail": "^11.0.15",
-    "tslint": "^6.1.2",
-    "tslint-config-holy-grail": "^50.0.4",
-    "typescript": "^3.9.5"
-  },
-  "engines": {
-    "node": ">=10.15.3"
-  },
-  "files": [
-    "build/es2019/",
-    "build/node/",
-    "src/"
-  ],
-  "homepage": "https://github.com/chrisguttandin/metadata-detector-streams",
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint --edit --extends @commitlint/config-angular",
-      "pre-commit": "grunt lint"
-    }
-  },
-  "license": "MIT",
-  "main": "build/node/module.js",
-  "name": "metadata-detector-streams",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chrisguttandin/metadata-detector-streams.git"
-  },
-  "scripts": {
-    "prepublishOnly": "grunt build",
-    "test": "grunt lint && grunt test"
-  },
-  "types": "build/es2019/module.d.ts",
-  "version": "2.0.31"
+    "author": "Christoph Guttandin",
+    "bugs": {
+        "url": "https://github.com/chrisguttandin/metadata-detector-streams/issues"
+    },
+    "config": {
+        "commitizen": {
+            "path": "cz-conventional-changelog"
+        }
+    },
+    "dependencies": {
+        "synchsafe": "^5.0.9",
+        "tslib": "^2.0.0"
+    },
+    "description": "A simple tool to locate and strip metadata from files.",
+    "devDependencies": {
+        "@babel/core": "^7.10.2",
+        "@babel/preset-env": "^7.10.2",
+        "@babel/register": "^7.10.1",
+        "@commitlint/cli": "^8.3.5",
+        "@commitlint/config-angular": "^8.3.4",
+        "chai": "^4.2.0",
+        "commitizen": "^4.1.2",
+        "cz-conventional-changelog": "^3.2.0",
+        "eslint": "^7.2.0",
+        "eslint-config-holy-grail": "^47.0.4",
+        "grunt": "^1.1.0",
+        "grunt-babel": "^8.0.0",
+        "grunt-cli": "^1.3.2",
+        "grunt-contrib-clean": "^2.0.0",
+        "grunt-sh": "^0.2.0",
+        "husky": "^4.2.5",
+        "leche": "^2.3.0",
+        "load-grunt-config": "^3.0.1",
+        "mocha": "^8.0.1",
+        "prettier": "^2.0.5",
+        "pretty-quick": "^2.0.1",
+        "sinon": "^9.0.2",
+        "sinon-chai": "^3.5.0",
+        "tsconfig-holy-grail": "^11.0.15",
+        "tslint": "^6.1.2",
+        "tslint-config-holy-grail": "^50.0.4",
+        "typescript": "^3.9.5"
+    },
+    "engines": {
+        "node": ">=10.15.3"
+    },
+    "files": [
+        "build/es2019/",
+        "build/node/",
+        "src/"
+    ],
+    "homepage": "https://github.com/chrisguttandin/metadata-detector-streams",
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint --edit --extends @commitlint/config-angular",
+            "pre-commit": "grunt lint"
+        }
+    },
+    "license": "MIT",
+    "main": "build/node/module.js",
+    "name": "metadata-detector-streams",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/chrisguttandin/metadata-detector-streams.git"
+    },
+    "scripts": {
+        "prepublishOnly": "grunt build",
+        "test": "grunt lint && grunt test"
+    },
+    "types": "build/es2019/module.d.ts",
+    "version": "2.0.31"
 }

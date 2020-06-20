@@ -4,7 +4,6 @@ import { decode } from 'synchsafe';
 import { TTransformCallback } from '../types';
 
 export class StripStream extends Transform {
-
     private _buffer: Buffer;
 
     private _isFirstAnalysis: boolean;
@@ -17,7 +16,7 @@ export class StripStream extends Transform {
 
     private _offset: number;
 
-    constructor (options?: TransformOptions) {
+    constructor(options?: TransformOptions) {
         super(options);
 
         this._buffer = Buffer.alloc(0);
@@ -28,7 +27,7 @@ export class StripStream extends Transform {
         this._offset = 0;
     }
 
-    public _flush (callback: TTransformCallback): void {
+    public _flush(callback: TTransformCallback): void {
         this._isLastAnalysis = true;
 
         this._analyzeBuffer();
@@ -38,7 +37,7 @@ export class StripStream extends Transform {
         callback();
     }
 
-    public _transform (chunk: any, _: string, callback: TTransformCallback): void {
+    public _transform(chunk: any, _: string, callback: TTransformCallback): void {
         this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
         if (this._analyzeBuffer()) {
@@ -52,7 +51,7 @@ export class StripStream extends Transform {
         callback();
     }
 
-    private _analyzeBuffer (): boolean {
+    private _analyzeBuffer(): boolean {
         if (this._isFirstAnalysis && this._buffer.length < 8) {
             return false;
         }
@@ -69,10 +68,12 @@ export class StripStream extends Transform {
                     return false;
                 }
 
-                isLast = ((this._buffer.readUInt8(offset) & 0x80) !== 0); // tslint:disable-line:no-bitwise
-                length = ((this._buffer.readUInt8(offset + 3) | // tslint:disable-line:no-bitwise
+                isLast = (this._buffer.readUInt8(offset) & 0x80) !== 0; // tslint:disable-line:no-bitwise
+                length =
+                    (this._buffer.readUInt8(offset + 3) | // tslint:disable-line:no-bitwise
                     (this._buffer.readUInt8(offset + 2) << 8) | // tslint:disable-line:no-bitwise
-                    (this._buffer.readUInt8(offset + 1) << 16)) + 4); // tslint:disable-line:no-bitwise
+                        (this._buffer.readUInt8(offset + 1) << 16)) + // tslint:disable-line:no-bitwise
+                    4;
             }
 
             if (this._buffer.length >= offset + length) {
@@ -82,8 +83,7 @@ export class StripStream extends Transform {
             }
         }
 
-        if ((this._isFirstAnalysis && this._buffer.toString('utf8', 4, 8) === 'ftyp') ||
-                (this._nextMpeg4AtomStart > 0)) {
+        if ((this._isFirstAnalysis && this._buffer.toString('utf8', 4, 8) === 'ftyp') || this._nextMpeg4AtomStart > 0) {
             let offset = this._nextMpeg4AtomStart - this._offset;
 
             while (offset < this._buffer.length - 8) {
@@ -92,10 +92,10 @@ export class StripStream extends Transform {
 
                 if (atom === 'moov' || atom === 'wide') {
                     if (this._buffer.length >= offset + length) {
-                        this._buffer = Buffer.concat([
-                            this._buffer.slice(0, offset),
-                            this._buffer.slice(offset + length)
-                        ], this._buffer.length - length);
+                        this._buffer = Buffer.concat(
+                            [this._buffer.slice(0, offset), this._buffer.slice(offset + length)],
+                            this._buffer.length - length
+                        );
                     } else {
                         return false;
                     }
@@ -151,10 +151,13 @@ export class StripStream extends Transform {
                             return false;
                         }
 
-                        this._buffer = Buffer.concat([
-                            this._buffer.slice(0, this._nextOggPageStart - this._offset),
-                            this._buffer.slice(this._nextOggPageStart + pageSize - this._offset)
-                        ], this._buffer.length - pageSize);
+                        this._buffer = Buffer.concat(
+                            [
+                                this._buffer.slice(0, this._nextOggPageStart - this._offset),
+                                this._buffer.slice(this._nextOggPageStart + pageSize - this._offset)
+                            ],
+                            this._buffer.length - pageSize
+                        );
 
                         this._nextOggPageStart += pageSize;
                     } else {
@@ -174,5 +177,4 @@ export class StripStream extends Transform {
 
         return true;
     }
-
 }
