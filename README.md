@@ -2,7 +2,6 @@
 
 **A simple tool to locate and strip metadata from files.**
 
-[![tests](https://img.shields.io/travis/chrisguttandin/metadata-detector-streams/master.svg?style=flat-square)](https://travis-ci.org/chrisguttandin/metadata-detector-streams)
 [![dependencies](https://img.shields.io/david/chrisguttandin/metadata-detector-streams.svg?style=flat-square)](https://www.npmjs.com/package/metadata-detector-streams)
 [![version](https://img.shields.io/npm/v/metadata-detector-streams.svg?style=flat-square)](https://www.npmjs.com/package/metadata-detector-streams)
 
