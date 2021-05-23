@@ -2,7 +2,7 @@
 
 **A simple tool to locate and strip metadata from files.**
 
-[![dependencies](https://img.shields.io/david/chrisguttandin/metadata-detector-streams.svg?style=flat-square)](https://www.npmjs.com/package/metadata-detector-streams)
+[![dependencies](https://img.shields.io/david/chrisguttandin/metadata-detector-streams.svg?style=flat-square)](https://github.com/chrisguttandin/metadata-detector-streams/network/dependencies)
 [![version](https://img.shields.io/npm/v/metadata-detector-streams.svg?style=flat-square)](https://www.npmjs.com/package/metadata-detector-streams)
 
 This module is currently capable of handling [ID3](http://id3.org/Home) tags within MP3s and
