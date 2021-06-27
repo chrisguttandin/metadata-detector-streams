@@ -9,7 +9,7 @@
         }
     },
     "dependencies": {
-        "synchsafe": "^6.0.2",
+        "synchsafe": "^6.0.3",
         "tslib": "^2.3.0"
     },
     "description": "A simple tool to locate and strip metadata from files.",
