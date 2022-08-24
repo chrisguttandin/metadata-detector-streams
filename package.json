@@ -15,7 +15,7 @@
     "description": "A simple tool to locate and strip metadata from files.",
     "devDependencies": {
         "@babel/cli": "^7.18.10",
-        "@babel/core": "^7.18.10",
+        "@babel/core": "^7.18.13",
         "@babel/preset-env": "^7.18.10",
         "@babel/register": "^7.18.9",
         "@commitlint/cli": "^17.0.3",
