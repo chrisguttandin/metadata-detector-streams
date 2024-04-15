@@ -1,9 +1,12 @@
-const { expect } = require('chai');
+const { expect, use } = require('chai');
 const babelOptions = require('../babel/test.json');
 const babelRegister = require('@babel/register');
 const { readFileSync } = require('fs');
+const sinonChai = require('sinon-chai');
 
 babelRegister(babelOptions);
+
+use(sinonChai);
 
 const compiler = require.extensions['.ts'];
 
