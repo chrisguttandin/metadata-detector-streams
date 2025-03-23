@@ -65,8 +65,8 @@
         "lint:test": "eslint --config config/eslint/test.json --ext .js --report-unused-disable-directives test/",
         "prepare": "husky",
         "prepublishOnly": "npm run build",
-        "test": "npm run lint && grunt test",
-        "test:integration": "mocha --bail --parallel --recursive --require config/mocha/config-integration.js test/integration"
+        "test": "npm run lint && npm run build && npm run test:integration",
+        "test:integration": "if [ \"$TYPE\" = \"\" -o \"$TYPE\" = \"integration\" ]; then mocha --bail --parallel --recursive --require config/mocha/config-integration.js test/integration; fi"
     },
     "types": "build/es2019/module.d.ts",
     "version": "6.0.15"
